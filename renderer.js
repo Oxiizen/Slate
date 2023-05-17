@@ -1,24 +1,27 @@
-const { remote } = require('electron');
+const { remote } = require('electron'); // Load remote module - Remote module needed for titlebar button controls like maximize, close
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
-    element = document.getElementById("new-window-btn");
-    element.addEventListener("click", NewWindow, true);
+    // Assign variable to the button for creating new file (New editor window)
+    element = document.getElementById("new-window-btn"); 
+    element.addEventListener("click", NewWindow, true); // Added Event listener for creating new file (New editor window)
 
-    cls_btn = document.getElementById("bigcardclosebtn");
+    cls_btn = document.getElementById("bigcardclosebtn"); // Close button inside the expanded new window card
     cls_btn.addEventListener("click", closeBigCardAction);
 
 
-    const closeButton = document.getElementById('close-btn');
+    const closeButton = document.getElementById('close-btn'); // Title bar close button
     closeButton.addEventListener('click', () => {
         window.close();
     })
 
-    const minimizeButton = document.getElementById('min-btn');
+    // Minimize Button - Doesnt work ATM
+    const minimizeButton = document.getElementById('min-btn'); 
     minimizeButton.addEventListener('click', () => {
         remote.getCurrentWindow().maximize();
     });
 
+    // Restore Button - Doesnt work ATM
     const restoreButton = document.getElementById('restore-btn');
     restoreButton.addEventListener('click', () => {
         const window = remote.getCurrentWindow();
@@ -29,10 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // FUNCTIONS -->
+
     function NewWindow() { // Create a new window after asking out new file name
 
-
-        document.getElementById("open-file-btn").classList.add("hide"); // Hide open new window button
+         // Hide open new window button
+        document.getElementById("open-file-btn").classList.add("hide");
 
         const hideWindowText = document.getElementById("new-window-txt");
         hideWindowText.classList.replace("show", "hide", true); // Hide the "New Window" text
@@ -40,10 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
         element.disabled = true; // Disable the click function once the` card expands
         element.removeEventListener("click", NewWindow, false); // Disable click response
 
-        const inputnamefield = document.getElementById('newname');
+        // CSS changes for new file name field
+        const inputnamefield = document.getElementById('newname'); 
         inputnamefield.classList.replace("hide", "show");
         inputnamefield.id = "newname";
 
+
+        // Actions after clicking the close button inside the 
         const bigcardclosebtn = document.getElementById('bigcardclosebtn')
         bigcardclosebtn.classList.remove("hide");
         bigcardclosebtn.classList.add("show");
@@ -51,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    // Revert changes made in NewWindow() functions --> Return to previous state
     function closeBigCardAction() {
         document.getElementById("open-file-btn").classList.replace("hide", "show");
 
@@ -71,5 +80,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 })
-
-// element.addEventListener("click", NewWindow);
