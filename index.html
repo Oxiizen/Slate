@@ -8,22 +8,27 @@
 </head>
 
 <body>
-  <!-- <script src="main.js"></script> -->
-  <script src="renderer.js"></script>
+ <!-- Load renderer.js --> 
+ <script src="renderer.js"></script>
   <div class="window-controls">
+    <!-- Title bar elements -->
     <div class="title-bar">
       <span> Oxiizen Text Editor</span>
     </div>
+    <!-- All title bar buttons are given svg code icons -->
+    <!-- Minimize button -->
     <button id="min-btn" class="ctrl-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
         <circle cx="5" cy="5" r="5" fill="#2E8B57" />
       </svg>
     </button>
+    <!-- Restore Button -->
     <button id="restore-btn" class="ctrl-btn">
       <svg width="20" height="20">
         <circle cx="5" cy="5" r="5" stroke="none" fill="#FFA500" />
       </svg>
     </button>
+    <!-- Close Button -->
     <button id="close-btn" class="ctrl-btn">
       <svg width="20" height="20">
         <circle cx="5" cy="5" r="5" fill="#FF0000" />
