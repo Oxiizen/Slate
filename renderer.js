@@ -1,4 +1,5 @@
 const { remote } = require('electron'); // Load remote module - Remote module needed for titlebar button controls like maximize, close
+// const { dialog } = require("electrn").remote;
 
 document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
@@ -8,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
     cls_btn = document.getElementById("bigcardclosebtn"); // Close button inside the expanded new window card
     cls_btn.addEventListener("click", closeBigCardAction);
+
+    openFileButton = document.getElementById("open-file-btn");
+    openFileButton.addEventListener("click", openFileAction);
 
 
     const closeButton = document.getElementById('close-btn'); // Title bar close button
@@ -77,6 +81,19 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
         element.removeEventListener("click", NewWindow);
 
+    }
+
+    function openFileAction() {
+        dialog.showOpenDialog({
+            properties: ['openFile']
+          }).then(result => {
+            const filePaths = result.filePaths;
+            if (filePaths && filePaths.length > 0) {
+              console.log('Selected file(s):', filePaths);
+            }
+          }).catch(err => {
+            console.error('Error:', err);
+          });
     }
 
 })
