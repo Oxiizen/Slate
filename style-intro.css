@@ -1,0 +1,198 @@
+html, body {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #44476a;
+    text-align: left;
+    background-color: #e6e7ee;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.title-bar {
+    display: flex;
+    -webkit-app-region: drag;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.window-controls {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
+    margin-top: 1vh;
+    margin-right: 1vh;
+}
+
+.ctrl-btn {
+  width: 20px;
+  height: 20px;
+  transform: scale(1);
+  padding: 5px;
+  border-style: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  background: rgb(228, 232, 236);
+  /* background: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%); */
+  box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+  transition: all .3s;
+}
+
+.ctrl-btn:active{
+  background: rgb(218, 221, 224);
+  background: linear-gradient(45deg, rgb(218, 221, 224) 0%, rgb(241, 241, 241) 100%);
+  box-shadow: -2px -7px 10px #d4d7da, 
+    4px 6px 10px #f1f1f1,
+    inset -2px -7px 10px #f1f1f1, 
+    inset 4px 6px 10px #d4d7da;
+  transition: all .3s;
+  transform: scale(.95);
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    margin: 0;
+}
+
+.card {
+    width: 190px;
+    height: 254px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    outline: none;
+    border-color: transparent;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    color: #516d91;
+    cursor: pointer;
+    box-shadow: -2px -1px 8px 0px #ffffff, 2px 1px 8px 0px rgb(95 157 231 / 48%);
+}
+
+.card:active {
+    transform: scale(0.95);
+}
+
+.bigcard {
+    width: 600px;
+    height: 354px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    outline: none;
+    border-color: transparent;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    position: relative;
+}
+
+.closeBigCard{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    transform: scale(1);
+    border-style: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background: rgb(228, 232, 236);
+    background: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
+    box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+    transition: all .3s;
+    align-content: center;
+    justify-content: center;
+    padding-top: 6px;
+}
+
+.closeBigCard:active{
+    background: rgb(218, 221, 224);
+    background: linear-gradient(45deg, rgb(218, 221, 224) 0%, rgb(241, 241, 241) 100%);
+     box-shadow: -2px -7px 10px #d4d7da, 
+    4px 6px 10px #f1f1f1,
+    inset -2px -7px 10px #f1f1f1, 
+    inset 4px 6px 10px #d4d7da;
+    transition: all .3s;
+    transform: scale(.95);
+}
+
+.name {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+
+.name:focus {
+    background: #e8e8e8;
+    box-shadow: inset 5px 5px 17px #c8c8c8,
+        inset -5px -5px 17px #ffffff;
+}
+
+.nameclosebtn{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+
+
+.font-settings {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.shadow-soft {
+    box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #fff !important;
+}
+
+btn {
+    margin: 0 10px;
+
+}
+
+btn:first-child {
+    margin-right: 10px;
+}
+
+btn:last-child {
+    margin-left: 10px;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: flex;
+}
