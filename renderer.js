@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 const { ipcRenderer } = require('electron');
 
 // Restore Button - Doesnt work ATM
+=======
+const { remote } = require('electron'); // Load remote module - Remote module needed for titlebar button controls like maximize, close
+// const { dialog } = require("electrn").remote;
+>>>>>>> 4702823677006d352ecdcb25621279141c58fdd6
 
 document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
@@ -23,9 +28,36 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
     cls_btn = document.getElementById("bigcardclosebtn"); // Close button inside the expanded new window card
     cls_btn.addEventListener("click", closeBigCardAction);
 
+<<<<<<< HEAD
     // const openFileButton = document.getElementById("open-file-btn");
     // openFileButton.addEventListener("click", handleFileSelection);
       
+=======
+    openFileButton = document.getElementById("open-file-btn");
+    openFileButton.addEventListener("click", openFileAction);
+
+
+    const closeButton = document.getElementById('close-btn'); // Title bar close button
+    closeButton.addEventListener('click', () => {
+        window.close();
+    })
+
+    // Minimize Button - Doesnt work ATM
+    const minimizeButton = document.getElementById('min-btn'); 
+    minimizeButton.addEventListener('click', () => {
+        remote.getCurrentWindow().maximize();
+    });
+
+    // Restore Button - Doesnt work ATM
+    const restoreButton = document.getElementById('restore-btn');
+    restoreButton.addEventListener('click', () => {
+        const window = remote.getCurrentWindow();
+        if (window.isMaximized()) {
+            window.unmaximize();
+        } else {
+            window.maximize();
+        }
+>>>>>>> 4702823677006d352ecdcb25621279141c58fdd6
     });
 
     // FUNCTIONS -->
@@ -74,3 +106,21 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
         element.removeEventListener("click", NewWindow);
 
     }
+<<<<<<< HEAD
+=======
+
+    function openFileAction() {
+        dialog.showOpenDialog({
+            properties: ['openFile']
+          }).then(result => {
+            const filePaths = result.filePaths;
+            if (filePaths && filePaths.length > 0) {
+              console.log('Selected file(s):', filePaths);
+            }
+          }).catch(err => {
+            console.error('Error:', err);
+          });
+    }
+
+})
+>>>>>>> 4702823677006d352ecdcb25621279141c58fdd6
