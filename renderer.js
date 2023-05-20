@@ -70,3 +70,4 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
         element.removeEventListener("click", NewWindow);
 
     }
+  })
