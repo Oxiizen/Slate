@@ -24,29 +24,6 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
     openFileButton = document.getElementById("open-file-btn");
     openFileButton.addEventListener("click", openFileAction);
 
-
-    const closeButton = document.getElementById('close-btn'); // Title bar close button
-    closeButton.addEventListener('click', () => {
-        window.close();
-    })
-
-    // Minimize Button - Doesnt work ATM
-    const minimizeButton = document.getElementById('min-btn'); 
-    minimizeButton.addEventListener('click', () => {
-        remote.getCurrentWindow().maximize();
-    });
-
-    // Restore Button - Doesnt work ATM
-    const restoreButton = document.getElementById('restore-btn');
-    restoreButton.addEventListener('click', () => {
-        const window = remote.getCurrentWindow();
-        if (window.isMaximized()) {
-            window.unmaximize();
-        } else {
-            window.maximize();
-        }
-    });
-
     // FUNCTIONS -->
 
     function NewWindow() { // Create a new window after asking out new file name
@@ -93,18 +70,3 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
         element.removeEventListener("click", NewWindow);
 
     }
-
-    function openFileAction() {
-        dialog.showOpenDialog({
-            properties: ['openFile']
-          }).then(result => {
-            const filePaths = result.filePaths;
-            if (filePaths && filePaths.length > 0) {
-              console.log('Selected file(s):', filePaths);
-            }
-          }).catch(err => {
-            console.error('Error:', err);
-          });
-    }
-
-})
