@@ -1,35 +1,31 @@
-const { remote } = require('electron'); // Load remote module - Remote module needed for titlebar button controls like maximize, close
+const { ipcRenderer } = require('electron');
+
+// Restore Button - Doesnt work ATM
 
 document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
-    // Assign variable to the button for creating new file (New editor window)
+    document.getElementById('close-btn').addEventListener('click', () => {
+        ipcRenderer.send('window-action', 'close');
+      });
+
+    document.getElementById('min-btn').addEventListener('click', () => {
+        ipcRenderer.send('window-action', 'minimize');
+      });
+
+    document.getElementById('restore-btn').addEventListener('click', () => {
+        ipcRenderer.send('window-action', 'restore');
+      });    
+    // Assign variable to the button for creating new file (New editor window) 
+    /* KEEP GLOBAL SCOPE */
     element = document.getElementById("new-window-btn"); 
     element.addEventListener("click", NewWindow, true); // Added Event listener for creating new file (New editor window)
 
     cls_btn = document.getElementById("bigcardclosebtn"); // Close button inside the expanded new window card
     cls_btn.addEventListener("click", closeBigCardAction);
 
-
-    const closeButton = document.getElementById('close-btn'); // Title bar close button
-    closeButton.addEventListener('click', () => {
-        window.close();
-    })
-
-    // Minimize Button - Doesnt work ATM
-    const minimizeButton = document.getElementById('min-btn'); 
-    minimizeButton.addEventListener('click', () => {
-        remote.getCurrentWindow().maximize();
-    });
-
-    // Restore Button - Doesnt work ATM
-    const restoreButton = document.getElementById('restore-btn');
-    restoreButton.addEventListener('click', () => {
-        const window = remote.getCurrentWindow();
-        if (window.isMaximized()) {
-            window.unmaximize();
-        } else {
-            window.maximize();
-        }
+    // const openFileButton = document.getElementById("open-file-btn");
+    // openFileButton.addEventListener("click", handleFileSelection);
+      
     });
 
     // FUNCTIONS -->
@@ -78,5 +74,3 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
         element.removeEventListener("click", NewWindow);
 
     }
-
-})
