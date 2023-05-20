@@ -1,5 +1,5 @@
-const { BrowserWindow, app } = require("electron")
-const path = require("path")
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require("path");
 
 require("electron-reloader")(module); // Electron-reloader module is handy for dynamic changes. Might crash while JS changes
 
@@ -13,12 +13,27 @@ const createWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            preload: path.join(__dirname, "renderer.js"), // renderer.js controls the changes in UI
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            preload: path.join(__dirname, "renderer.js") // renderer.js controls the changes in UI
+            
         }
     });
 
-    mainWindow.loadFile("index.html");
+    ipcMain.on('window-action', (event, action) => {
+        if (action === 'minimize') {
+          mainWindow.minimize();
+        } else if (action === 'restore') {
+          if (mainWindow.isMaximized()) {
+            mainWindow.unmaximize();
+          } else {
+            mainWindow.maximize();
+          }
+        } else if (action === 'close') {
+          mainWindow.close();
+        }
+      });
+
+    mainWindow.loadFile('index.html');
     mainWindow.webContents.openDevTools(); // Only in developer mode ; Should remove in beta and public
 };
 
@@ -35,3 +50,11 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
+
+ipcMain.on('minimize-window', () => {
+    if (mainWindow) {
+      mainWindow.minimize();
+    }
+  });
+
+

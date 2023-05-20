@@ -1,13 +1,28 @@
-const { remote } = require('electron'); // Load remote module - Remote module needed for titlebar button controls like maximize, close
+const { ipcRenderer } = require('electron');
 
 document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
-    // Assign variable to the button for creating new file (New editor window)
+    document.getElementById('close-btn').addEventListener('click', () => {
+        ipcRenderer.send('window-action', 'close');
+      });
+
+    document.getElementById('min-btn').addEventListener('click', () => {
+        ipcRenderer.send('window-action', 'minimize');
+      });
+
+    document.getElementById('restore-btn').addEventListener('click', () => {
+        ipcRenderer.send('window-action', 'restore');
+      });    
+    // Assign variable to the button for creating new file (New editor window) 
+    /* KEEP GLOBAL SCOPE */
     element = document.getElementById("new-window-btn"); 
     element.addEventListener("click", NewWindow, true); // Added Event listener for creating new file (New editor window)
 
     cls_btn = document.getElementById("bigcardclosebtn"); // Close button inside the expanded new window card
     cls_btn.addEventListener("click", closeBigCardAction);
+
+    openFileButton = document.getElementById("open-file-btn");
+    openFileButton.addEventListener("click", openFileAction);
 
 
     const closeButton = document.getElementById('close-btn'); // Title bar close button
@@ -77,6 +92,19 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
         element.removeEventListener("click", NewWindow);
 
+    }
+
+    function openFileAction() {
+        dialog.showOpenDialog({
+            properties: ['openFile']
+          }).then(result => {
+            const filePaths = result.filePaths;
+            if (filePaths && filePaths.length > 0) {
+              console.log('Selected file(s):', filePaths);
+            }
+          }).catch(err => {
+            console.error('Error:', err);
+          });
     }
 
 })
