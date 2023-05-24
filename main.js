@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require("path");
 
 require("electron-reloader")(module); // Electron-reloader module is handy for dynamic changes. Might crash while JS changes
@@ -15,23 +15,23 @@ const createWindow = () => {
             contextIsolation: false,
             enableRemoteModule: true,
             preload: path.join(__dirname, "renderer.js") // renderer.js controls the changes in UI
-            
+
         }
     });
 
     ipcMain.on('window-action', (event, action) => {
         if (action === 'minimize') {
-          mainWindow.minimize();
+            mainWindow.minimize();
         } else if (action === 'restore') {
-          if (mainWindow.isMaximized()) {
-            mainWindow.unmaximize();
-          } else {
-            mainWindow.maximize();
-          }
+            if (mainWindow.isMaximized()) {
+                mainWindow.unmaximize();
+            } else {
+                mainWindow.maximize();
+            }
         } else if (action === 'close') {
-          mainWindow.close();
+            mainWindow.close();
         }
-      });
+    });
 
     mainWindow.loadFile('index.html');
     mainWindow.webContents.openDevTools(); // Only in developer mode ; Should remove in beta and public
@@ -51,10 +51,25 @@ app.on('window-all-closed', () => {
     }
 });
 
-ipcMain.on('minimize-window', () => {
-    if (mainWindow) {
-      mainWindow.minimize();
-    }
-  });
+let isDialogOpen = false; // Flag to track if a dialog is already open
 
+ipcMain.handle('show-open-dialog-sync', async (event) => {
+    if (isDialogOpen) {
+        // Dialog is already open, return early
+        return null;
+    }
+
+    isDialogOpen = true; // Set the flag to indicate a dialog is being shown
+
+    const result = await dialog.showOpenDialog(BrowserWindow.fromWebContents(event.sender), {
+        properties: ['openFile'],
+        filters: [
+            { name: 'All Files', extensions: ['*'] }
+        ]
+    });
+
+    isDialogOpen = false; // Reset the flag since the dialog has been closed
+
+    return result;
+});
 
