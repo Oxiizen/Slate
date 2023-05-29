@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
   cls_btn = document.getElementById("bigcardclosebtn"); // Close button inside the expanded new window card
   cls_btn.addEventListener("click", closeBigCardAction);
 
+  submit_btn = document.getElementById("submitbtnshow");
+  submit_btn.addEventListener("click", closeBigCardAction, true);
+
+
   // FUNCTIONS -->
 
   function NewWindow() { // Create a new window after asking out new file name
@@ -50,12 +54,16 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
     inputnamefield.classList.replace("hide", "show");
     inputnamefield.id = "newname";
 
+    const submit = document.getElementById("submitbtn");
+    submit.classList.replace("hide", "show", true);
+    submit.id = "submitbtnshow";
 
     // Actions after clicking the close button inside the 
     const bigcardclosebtn = document.getElementById('bigcardclosebtn')
     bigcardclosebtn.classList.remove("hide");
     bigcardclosebtn.classList.add("show");
     bigcardclosebtn.id = "bigcardclosebtn";
+
 
   }
 
@@ -74,6 +82,9 @@ document.addEventListener('DOMContentLoaded', () => { // Access DOMContent
 
     const bigcardclosebtn = document.getElementById('bigcardclosebtn')
     bigcardclosebtn.classList.replace("show", "hide");
+
+    const submithide = document.getElementById("submitbtnshow");
+    submithide.classList.replace("show", "hide")
 
     element.removeEventListener("click", NewWindow);
 
