@@ -8,45 +8,77 @@ body {
   color: #44476a;
   text-align: left;
   background-color: #e6e7ee;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0%; */
 }
 
-.title {
+.heading {
   height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin-top: 80px;
 }
 
-.window-controls {
+.title-wrapper {
   display: flex;
   flex-direction: row;
-  align-items: end;
-  justify-content: end;
-  margin-top: 1vh;
-  margin-right: 1vh;
-  margin-bottom: 80px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 2;
+  margin-left: 1vw;
+  margin-top: 1vw;
+  /* flex-wrap: wrap; */
 }
 
 .title-bar {
   height: fit-content;
+  width: fit-content;
   display: flex;
-  -webkit-app-region: drag;
   flex-direction: row;
-  align-items: start;
-  justify-content: start;
+  align-content: center;
+  margin-top: 2px;
+  /* justify-content: space-between; */
+}
+
+.window-controls {
+  width: 100vw;
+  height: 1.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10px;
+  margin-top: 5px;
+  align-items: end;
+  -webkit-app-region: drag;
+  box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+  border-radius: 10px;
+}
+
+.clr-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1vh;
+  margin-bottom: 2vh;
+  margin-left: 16px;
+  padding-top: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 h1 {
-  font-family: 'Sacramento', cursive;
+  font-family: "Sacramento", cursive;
   font-size: 96px;
   -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .ctrl-btn {
@@ -59,7 +91,7 @@ h1 {
   cursor: pointer;
   border-radius: 50%;
   background: rgb(228, 232, 236);
-  /* background: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%); */
+  background: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
   box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
   transition: all 0.3s;
 }
@@ -194,18 +226,16 @@ h1 {
   border-radius: 0.5em;
   background: #e8e8e8;
   border: 1px solid #e8e8e8;
-  transition: all .3s;
-  box-shadow: 6px 6px 12px #c5c5c5,
-             -6px -6px 12px #ffffff;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
 
 .submitbutton:hover {
-    border: 1px solid white;
+  border: 1px solid white;
 }
 
 .submitbutton:active {
-    box-shadow: 4px 4px 12px #c5c5c5,
-    -4px -4px 12px #ffffff;
+  box-shadow: 4px 4px 12px #c5c5c5, -4px -4px 12px #ffffff;
 }
 
 .font-settings {
