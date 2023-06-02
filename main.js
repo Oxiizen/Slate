@@ -9,6 +9,8 @@ const createWindow = () => {
         show: false,
         width: 900,
         height: 700,
+        minWidth:450,
+        minHeight:690,
         frame: false, // Remove default title bar
         titleBarStyle: "hiddenInset", // Using custom title bar
         webPreferences: {
