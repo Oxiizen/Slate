@@ -6,6 +6,7 @@ require("electron-reloader")(module); // Electron-reloader module is handy for d
 // Create the Intro window
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
+        show: false,
         width: 900,
         height: 700,
         frame: false, // Remove default title bar
@@ -17,6 +18,10 @@ const createWindow = () => {
             preload: path.join(__dirname, "renderer.js") // renderer.js controls the changes in UI
 
         }
+    });
+
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show()
     });
 
     ipcMain.on('window-action', (event, action) => {
